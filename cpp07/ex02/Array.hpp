@@ -1,43 +1,57 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-template <class T>
+template <typename T>
 class Array {
     private:
         T* arr;
+        unsigned int N;
     public:
         Array<T>() {
-            this.arr = new T[0];
+            arr = new T[0];
+            N = 0;            
         };
         ~Array<T>() {
             delete[] arr;
         };
         Array<T>(unsigned int n) {
-            T* arr = new T[n];
+            arr = new T[n]();
+            N = n;
         };
         Array(const Array& other) {
+            this->N = other.N;
 
-            this->arr = new T[this->size()];
+            this->arr = new T[other.size()]();
 
-            for ( int i = 0; i < this.size(); i++ )
+            for ( unsigned int i = 0; i < this->size(); i++ )
                 this->arr[i] = other.arr[i];
         };
-        Array& opertaor=(const Array& other) {
+        Array& operator=(const Array& other) {
             if ( this != other )
             {
-                delete[] this.arr;
-                this.arr = new T[this->size()];
-                for ( int i = 0; i < this.size(); i++ )
+                this->N = other->N;
+                delete[] this->arr;
+                this->arr = new T[other.N]();
+                for ( unsigned int i = 0; i < this->N; i++ )
                     this->arr[i] = other.arr[i];
             }
         };
         unsigned int size() const {
-            return sizeof(this->arr) / sizeof(this->arr[0]);
+            return N;
         };
         T& operator[](unsigned int i) {
+            if ( i < 0 || i >= this->N )
+                throw std::runtime_error("out of  bounds!");
             return this->arr[i];
         };
-
+        const T& operator[](unsigned int i) const{
+            try {
+                return this->arr[i];
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Error: " << e.what() << std::endl;
+            }
+        };
 };
 
 #endif
