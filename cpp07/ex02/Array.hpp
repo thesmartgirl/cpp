@@ -26,31 +26,33 @@ class Array {
             for ( unsigned int i = 0; i < this->size(); i++ )
                 this->arr[i] = other.arr[i];
         };
+
         Array& operator=(const Array& other) {
-            if ( this != other )
+            if ( this != &other )
             {
-                this->N = other->N;
                 delete[] this->arr;
+                this->N = other.N;
                 this->arr = new T[other.N]();
                 for ( unsigned int i = 0; i < this->N; i++ )
                     this->arr[i] = other.arr[i];
             }
+            return *this;
         };
+
         unsigned int size() const {
             return N;
         };
+
         T& operator[](unsigned int i) {
-            if ( i < 0 || i >= this->N )
-                throw std::runtime_error("out of  bounds!");
+            if ( i >= this->N )
+                throw std::out_of_range("out of  bounds!");
             return this->arr[i];
         };
+        
         const T& operator[](unsigned int i) const{
-            try {
-                return this->arr[i];
-            }
-            catch (const std::exception& e) {
-                std::cerr << "Error: " << e.what() << std::endl;
-            }
+            if ( i < 0 || i >= this->N )
+                throw std::out_of_range("out of  bounds!");
+            return this->arr[i];
         };
 };
 

@@ -32,26 +32,30 @@ int main()
     std::cout << "arr3[0] = " << arr3[0] << std::endl;
     std::cout << "arr3[1] = " << arr3[1] << std::endl;
 
-    //assignment constructor
+    // //assignment constructor
     std::cout << "Assignment Constructor tests\n";
-    Array<int> arr4 = arr1;
-    std::cout << "arr1[0] = " << arr1[0] << std::endl;
-    std::cout << "arr1[1] = " << arr1[1] << std::endl;
+    Array<int> arr4(2), arr5(2);
+    arr4 = arr5;
     std::cout << "arr4[0] = " << arr4[0] << std::endl;
     std::cout << "arr4[1] = " << arr4[1] << std::endl;
+    std::cout << "arr5[0] = " << arr5[0] << std::endl;
+    std::cout << "arr5[1] = " << arr5[1] << std::endl;
     arr4[0] = -7;
     arr4[1] = 99;
-    std::cout << "arr1[0] = " << arr1[0] << std::endl;
-    std::cout << "arr1[1] = " << arr1[1] << std::endl;
     std::cout << "arr4[0] = " << arr4[0] << std::endl;
     std::cout << "arr4[1] = " << arr4[1] << std::endl;
+    std::cout << "arr5[0] = " << arr5[0] << std::endl;
+    std::cout << "arr5[1] = " << arr5[1] << std::endl;
 
-    //out of bound
+    // out of bound
     std::cout << "out of bound tests\n";
-    std::cout << "arr4[-1] = " << arr4[-1] << std::endl;
-    std::cout << "arr4[10] = " << arr4[10] << std::endl;
-
-
+    try{
+        std::cout << "arr4[10] = " << arr1[10] << std::endl;
+    }
+    catch (std::out_of_range &e)
+    {
+        std::cout << "catched an error: " << e.what() << std::endl;
+    }
 
     return 0;
 }
