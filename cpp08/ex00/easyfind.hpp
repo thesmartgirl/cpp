@@ -1,3 +1,13 @@
+/*
+    Templates + Iterators + Algorithms
+
+    Accept any container of ints
+    Use std::find
+    Return iterator OR throw
+
+    "Generic function working on any container”
+*/
+
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
