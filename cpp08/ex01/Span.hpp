@@ -13,11 +13,18 @@ class Span {
         ~Span();
         Span(const Span& other);
         Span& operator=(const Span& other);
+
         void addNumber(int n);
         int shortestSpan();
         int longestSpan();
 
-        void addRange( std::vector<int>::iterator begin, std::vector<int>::iterator end) ;
+        template <typename Iterator>
+        void addRange( Iterator begin, Iterator end ) {
+            if ( this->v.size() + std::distance( begin, end ) > this->N )
+                throw std::runtime_error( "Cannot add more numbers. Maximum size reached" );
+            else
+                this->v.insert( this->v.end(), begin, end );
+        };
     
     private:
 
