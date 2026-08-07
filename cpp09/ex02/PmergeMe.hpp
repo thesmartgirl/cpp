@@ -5,6 +5,8 @@
 #include <vector>
 #include <cstdlib>
 #include <deque>
+#include <algorithm>
+#include <sys/time.h>
 
 class PmergeMe {
     public:
@@ -19,11 +21,9 @@ class PmergeMe {
         std::vector<int> unsorted;
         std::vector<int> sorted_v;
         std::deque<int> sorted_q;
-        float time_v;
-        float time_q;
-        void sort_v();
-        void sort_q();
-
+        double time_v;
+        double time_q;
+        void sort();
 };
 
 #endif

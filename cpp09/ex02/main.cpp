@@ -26,7 +26,7 @@ int main (int argc, char** argv)
 {
     if ( argc < 2 )
     {
-        std::cout << "please provide a sequence of positive integers" << std::endl;
+        std::cout << "Error" << std::endl;
         return 1;
     }
 
@@ -36,14 +36,13 @@ int main (int argc, char** argv)
         int val = positive_int(argv[i]);
         if (!val)
         {
-            std::cout << "please provide a sequence of positive integers" << std::endl;
+            std::cout << "Error" << std::endl;
             return 1;
         }
         unsorted.push_back(val);
     }
 
     PmergeMe s(unsorted);
-    s.print();
 
     return 0;
 }
